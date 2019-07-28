@@ -23,6 +23,6 @@ socat TCP4:localhost:60${DISPLAY_NUMBER} UNIX-LISTEN:display/socket/X${CONTAINER
 docker run -it --rm \
   -e DISPLAY=:${CONTAINER_DISPLAY} \
   -v ${PWD}/display/socket:/tmp/.X11-unix \
-  -v ${PWD}/display/Xauthority:/home/xterm/.Xauthority \
+  -v ${PWD}/display/Xauthority:/home/root/.Xauthority \
   --hostname ${CONTAINER_HOSTNAME} \
   xterm xterm
