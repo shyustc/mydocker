@@ -13,6 +13,7 @@ RUN apt update && apt install -y \
     g++-7 \
     vim \
     libopenmpi-dev \
+    socat \
     && rm -rf /var/lib/lists/*
 
 # Install Anaconda
@@ -29,8 +30,20 @@ RUN wget "https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-lat
     /conda/bin/conda update --yes -n base conda && \
     /conda/bin/conda update --all --yes && \
     /conda/bin/conda create -n tf20 python=3.7.3 && \
-    /conda/bin/conda create -n spinningup python=3.6 
+    /conda/bin/conda create -n sup python=3.6 && \
+    echo "source activate sup" > ~/.bashrc 
     
+ENV PATH /opt/conda/envs/env/bin:$PATH
+
+# install spinningup
+RUN /bin/bash -c "source activate sup" && \
+    conda install tensorflow && \ 
+    git clone https://github.com/openai/spinningup.git && \
+    cd spinningup && \
+    pip install -e .
+
+
+
     # 如果需要激活的话
     # RUN echo "source activate myenv" > ~/.bashrc
     # ENV PATH /opt/conda/envs/env/bin:$PATH
