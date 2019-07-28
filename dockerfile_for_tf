@@ -30,24 +30,23 @@ RUN wget "https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-lat
     /conda/bin/conda update --all --yes && \
     /conda/bin/conda create -n tf20 python=3.7.3 && \
     /conda/bin/conda create -n sup python=3.6 && \
-    echo "source activate sup" > ~/.bashrc 
+        echo "source activate sup" > ~/.bashrc && \
+    echo "export PATH='/conda/bin/:$PATH'" > ~/.bashrc 
     
-#ENV PATH /opt/conda/envs/env/bin:$PATH
+ENV PATH /opt/conda/envs/env/bin:$PATH
+ENV PATH /conda/bin:$PATH
 EXPOSE 5000
 
 # install spinningup
-RUN /bin/bash -c "source activate sup" && \
+RUN /bin/bash -c "source ~/.bashrc && \
+    source /conda/etc/profile.d/conda.sh && \
+    conda activate sup && \
     conda install tensorflow && \ 
     git clone https://github.com/openai/spinningup.git && \
     cd spinningup && \
-    pip install -e .
+    pip install -e . "
 
-
-
-    # 如果需要激活的话
-    # RUN echo "source activate myenv" > ~/.bashrc
-    # ENV PATH /opt/conda/envs/env/bin:$PATH
-    # 或者使用shell脚本执行
+# 或者使用shell脚本执行
 #COPY build.sh /build.sh
 #COPY cuda.sh /cuda.sh
 #CMD bash build.sh              
