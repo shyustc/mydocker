@@ -1,6 +1,6 @@
 # https://blog.yadutaf.fr/2017/09/10/running-a-graphical-app-in-a-docker-container-on-a-remote-server/
 # Prepare target env
-CONTAINER_DISPLAY="0"
+CONTAINER_DISPLAY="10"
 CONTAINER_HOSTNAME=`hostname`
 
 # Create a directory for the socket
@@ -28,5 +28,16 @@ docker run -dit --rm \
   --hostname ${CONTAINER_HOSTNAME} \
   tf:v1.0 /bin/bash
 
-#--net=host \
-#-e DISPLAY=:10.0 \
+<<B
+docker run -dit --rm \
+  --net=host \
+  -e DISPLAY=:10.0 \
+  -e DISPLAY=:${CONTAINER_DISPLAY} \
+  -v ${PWD}/display/socket:/tmp/.X11-unix \
+  -v ${PWD}/display/Xauthority:/root/.Xauthority \
+  -v /mnt/docker/data/:/mnt/data \
+  --hostname ${CONTAINER_HOSTNAME} \
+  tf:v1.0 /bin/bash
+B
+
+
