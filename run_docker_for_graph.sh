@@ -17,9 +17,10 @@ AUTH_COOKIE=$(xauth list | grep "^$(hostname)/unix:${DISPLAY_NUMBER} " | awk '{p
 xauth -f display/Xauthority add ${CONTAINER_HOSTNAME}/unix:${CONTAINER_DISPLAY} MIT-MAGIC-COOKIE-1 ${AUTH_COOKIE}
 
 # Proxy with the :0 DISPLAY
-socat TCP4:localhost:60${DISPLAY_NUMBER} UNIX-LISTEN:display/socket/X${CONTAINER_DISPLAY} &
+# socat TCP4:localhost:60${DISPLAY_NUMBER} UNIX-LISTEN:display/socket/X${CONTAINER_DISPLAY} &
 
 # Launch the container
+<<B
 sudo docker run -dit --rm \
   -e DISPLAY=:${CONTAINER_DISPLAY} \
   -v ${PWD}/display/socket:/tmp/.X11-unix \
@@ -27,8 +28,8 @@ sudo docker run -dit --rm \
   -v /mnt/docker/data/:/mnt/data \
   --hostname ${CONTAINER_HOSTNAME} \
   tf:v1.0 /bin/bash
+B
 
-<<B
 sudo docker run -dit --rm \
   --net=host \
   -e DISPLAY=:10.0 \
@@ -36,6 +37,6 @@ sudo docker run -dit --rm \
   -v /mnt/docker/data/:/mnt/data \
   --hostname ${CONTAINER_HOSTNAME} \
   tf:v1.0 /bin/bash
-B
+
 
 
