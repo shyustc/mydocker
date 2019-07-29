@@ -27,3 +27,6 @@ docker run -dit --rm \
   -v /mnt/docker/data/:/mnt/data \
   --hostname ${CONTAINER_HOSTNAME} \
   tf:v1.0 /bin/bash
+
+#--net=host \
+#-e DISPLAY=:10.0 \
