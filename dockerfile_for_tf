@@ -46,7 +46,7 @@ RUN /bin/bash -c "source ~/.bashrc && \
     conda install tensorflow && \ 
     git clone https://github.com/openai/spinningup.git && \
     cd spinningup && \
-    pip install -e . "
+    pip install -e . -i http://pypi.douban.com/simple --trusted-host pypi.douban.com"
 
 # 或者使用shell脚本执行
 #COPY build.sh /build.sh
