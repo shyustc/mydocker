@@ -32,10 +32,10 @@ RUN wget "https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-lat
     /conda/bin/conda create -n sup python=3.6 && \
     echo "export OMPI_MCA_btl_vader_single_copy_mechanism=none #mpi for docker bug" >> ~/.bashrc && \
     echo "alias ll='ls -al'" >> ~/.bashrc && \ 
-    echo "source activate sup" > ~/.bashrc && \
-    echo "export PATH='/conda/bin/:$PATH'" > ~/.bashrc 
+    echo "source activate sup" >> ~/.bashrc && \
+    echo "export PATH='/conda/bin/:$PATH'" >> ~/.bashrc 
     
-ENV PATH /opt/conda/envs/env/bin:$PATH
+#ENV PATH /opt/conda/envs/env/bin:$PATH
 ENV PATH /conda/bin:$PATH
 EXPOSE 5000
 
