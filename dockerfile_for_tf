@@ -30,7 +30,7 @@ RUN wget "https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-lat
     /conda/bin/conda update --all --yes && \
     /conda/bin/conda create -n tf20 python=3.7.3 && \
     /conda/bin/conda create -n sup python=3.6 && \
-        echo "source activate sup" > ~/.bashrc && \
+    echo "source activate sup" > ~/.bashrc && \
     echo "export PATH='/conda/bin/:$PATH'" > ~/.bashrc 
     
 ENV PATH /opt/conda/envs/env/bin:$PATH
