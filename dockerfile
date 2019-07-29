@@ -13,6 +13,7 @@ RUN apt update && apt install -y \
     g++-7 \
     vim \
     libopenmpi-dev \
+    python-opengl \
     && rm -rf /var/lib/lists/*
 
 # Install Anaconda
