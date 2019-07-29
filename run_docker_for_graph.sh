@@ -32,8 +32,6 @@ docker run -dit --rm \
 docker run -dit --rm \
   --net=host \
   -e DISPLAY=:10.0 \
-  -e DISPLAY=:${CONTAINER_DISPLAY} \
-  -v ${PWD}/display/socket:/tmp/.X11-unix \
   -v ${PWD}/display/Xauthority:/root/.Xauthority \
   -v /mnt/docker/data/:/mnt/data \
   --hostname ${CONTAINER_HOSTNAME} \
