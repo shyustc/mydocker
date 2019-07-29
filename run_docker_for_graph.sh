@@ -20,7 +20,7 @@ xauth -f display/Xauthority add ${CONTAINER_HOSTNAME}/unix:${CONTAINER_DISPLAY} 
 socat TCP4:localhost:60${DISPLAY_NUMBER} UNIX-LISTEN:display/socket/X${CONTAINER_DISPLAY} &
 
 # Launch the container
-docker run -dit --rm \
+sudo docker run -dit --rm \
   -e DISPLAY=:${CONTAINER_DISPLAY} \
   -v ${PWD}/display/socket:/tmp/.X11-unix \
   -v ${PWD}/display/Xauthority:/root/.Xauthority \
@@ -29,7 +29,7 @@ docker run -dit --rm \
   tf:v1.0 /bin/bash
 
 <<B
-docker run -dit --rm \
+sudo docker run -dit --rm \
   --net=host \
   -e DISPLAY=:10.0 \
   -v ${PWD}/display/Xauthority:/root/.Xauthority \
