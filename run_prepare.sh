@@ -1,3 +1,4 @@
+yum -y install epel-release
 sudo yum -y update
 
 sudo yum clean all
@@ -7,6 +8,9 @@ sudo yum makecache #将服务器上的软件包信息在本地缓存,以提高�
 sudo yum -y update
 
 sudo yum install -y git htop xorg-x11-xauth.x86_64 htop xorg-x11-apps.x86_64
+
+# for local conda
+yum -y install gcc gcc-c++ gcc-gfortran openssl-devel libffi-devel python-pip python-devel atlas atlas-devel bzip2
 
 # install docker
 sudo yum install -y yum-utils device-mapper-persistent-data lvm2
